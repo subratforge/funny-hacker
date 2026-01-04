@@ -1,0 +1,27 @@
+[9:35 pm, 4/1/2026] Prince Kumar: <div class="projects">
+  <h2>Projects</h2>
+
+  <a href="/guess" class="card">🎯 Number Guessing Game</a>
+  <a href="/dino" class="card">🦖 Dino Game</a>
+</div>
+[9:35 pm, 4/1/2026] Prince Kumar: <!DOCTYPE html>
+<html>
+<head>
+  <title>Number Guessing Game</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="terminal">
+    <h2>🎯 Guess a number (1–10)</h2>
+
+    <form method="POST">
+      <input type="number" name="number" required>
+      <button type="submit">Guess</button>
+    </form>
+
+    <p>{{ message }}</p>
+
+    <a href="/">⬅ Back</a>
+  </div>
+</body>
+</html>

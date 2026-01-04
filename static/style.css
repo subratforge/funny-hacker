@@ -1,0 +1,175 @@
+/* Polished neon + glass terminal stylesheet
+   - Responsive, modern neon glow, subtle animations, improved cards
+*/
+
+:root{
+  --bg-1: #071022;
+  --bg-2: #0b1220;
+  --accent: #00ff9c;
+  --accent-weak: #00ff9c33;
+  --glass: rgba(255,255,255,0.02);
+  --glass-2: rgba(255,255,255,0.03);
+  --card-radius: 12px;
+  --max-width: 900px;
+}
+
+/* Reset */
+* { box-sizing: border-box; }
+html,body { height:100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(0,255,156,0.03), transparent 8%),
+              radial-gradient(900px 400px at 90% 90%, rgba(0,255,156,0.02), transparent 6%),
+              linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  color: var(--accent);
+  font-family: "Courier New", ui-monospace, SFMono-Regular, monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Terminal container (glass + neon border) */
+.terminal {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(5,8,15,0.75), rgba(5,8,15,0.85));
+  border-radius: 14px;
+  border: 1px solid var(--accent-weak);
+  box-shadow:
+    0 6px 30px rgba(0,0,0,0.6),
+    0 0 30px rgba(0,255,156,0.06);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* subtle animated rim light */
+.terminal::before{
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,156,0.06), transparent);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: slideRim 6s linear infinite;
+}
+@keyframes slideRim { to { transform: translateX(40%); } }
+
+/* Header / prompt lines */
+.cmd {
+  opacity: 0.85;
+  margin: 6px 0 6px;
+  font-size: 0.95rem;
+  color: rgba(0,255,156,0.95);
+}
+
+.glow {
+  text-shadow: 0 0 8px var(--accent), 0 0 18px rgba(0,255,156,0.25);
+}
+
+/* Typing effect (smoother) */
+.type {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--accent);
+  width: 0;
+  animation: typing 2.2s steps(32, end) forwards, blink 0.8s infinite 2.2s;
+  vertical-align: bottom;
+}
+
+.delay1 { animation-delay: 1.6s; }
+.delay2 { animation-delay: 3.3s; }
+
+@keyframes typing { to { width: 100%; } }
+@keyframes blink { 50% { border-color: transparent; } }
+
+/* Projects section */
+.projects {
+  margin-top: 26px;
+}
+
+/* Section heading */
+.projects h2 {
+  margin: 8px 0 12px;
+  font-size: 1.05rem;
+  color: var(--accent);
+  letter-spacing: 0.6px;
+}
+
+/* Card grid for nicer layout */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+/* Card (link) */
+.card {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border-radius: var(--card-radius);
+  margin: 0;
+  border: 1px solid var(--accent-weak);
+  background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(255,255,255,0.01));
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms, background 220ms;
+  text-decoration: none;
+  color: var(--accent);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+}
+
+/* Hover/tap feedback */
+.card:hover, .card:focus {
+  transform: translateY(-6px);
+  background: linear-gradient(180deg, rgba(0,255,156,0.03), rgba(0,255,156,0.01));
+  color: #001814;
+  box-shadow: 0 10px 30px rgba(0,255,156,0.08), 0 2px 8px rgba(0,0,0,0.6);
+  border-color: rgba(0,255,156,0.35);
+}
+
+/* Card title & meta */
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: inherit;
+}
+.card p {
+  margin: 0;
+  opacity: 0.85;
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+/* Small accent pill */
+.pill {
+  display:inline-block;
+  margin-top:10px;
+  padding:4px 8px;
+  border-radius:999px;
+  background: rgba(0,255,156,0.08);
+  color: var(--accent);
+  font-size:0.75rem;
+  border: 1px solid rgba(0,255,156,0.06);
+}
+
+/* Responsive tweaks */
+@media (max-width:560px){
+  .terminal { padding: 18px; border-radius:10px; }
+  .card { padding: 12px; }
+  .cmd { font-size: 0.9rem; }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .card, .terminal::before, .type { animation: none; transition: none; transform: none; }
+  .type { border-right: 2px solid transparent; }
+}
