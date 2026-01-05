@@ -1,27 +1,33 @@
-[9:35 pm, 4/1/2026] Prince Kumar: <div class="projects">
-  <h2>Projects</h2>
-
-  <a href="/guess" class="card">🎯 Number Guessing Game</a>
-  <a href="/dino" class="card">🦖 Dino Game</a>
-</div>
-[9:35 pm, 4/1/2026] Prince Kumar: <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
   <title>Number Guessing Game</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
   <div class="terminal">
-    <h2>🎯 Guess a number (1–10)</h2>
 
-    <form method="POST">
-      <input type="number" name="number" required>
-      <button type="submit">Guess</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+      <h2>🎯 Number Guessing Game</h2>
+      <div>
+        <a class="card" href="/dino">🦖 Play Dino</a>
+        <a class="card" href="/">🏠 Home</a>
+      </div>
+    </div>
+
+    <p>Guess a number between <b>1</b> and <b>10</b>. Attempts: <b>{{ attempts }}</b></p>
+
+    <form method="POST" style="margin-top:12px; display:flex; gap:8px; align-items:center;">
+      <input type="number" name="number" min="1" max="10" required style="padding:8px;border-radius:8px;border:1px solid rgba(0,255,156,0.08);">
+      <button type="submit" class="card" style="padding:8px 12px;">Guess</button>
+      <a href="/guess?reset=1" class="card" style="padding:8px 12px;">New Game</a>
     </form>
 
-    <p>{{ message }}</p>
+    {% if message %}
+      <p style="margin-top:12px;font-weight:600;">{{ message }}</p>
+    {% endif %}
 
-    <a href="/">⬅ Back</a>
   </div>
 </body>
 </html>

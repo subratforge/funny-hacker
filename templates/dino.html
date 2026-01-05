@@ -1,14 +1,48 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>Dino Game</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      background: #0f172a;
+      color: #00ff9c;
+      font-family: monospace;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 10px;
+    }
+
+    canvas {
+      background: #111;
+      display: block;
+      margin: 20px auto;
+      border: 2px solid #00ff9c;
+    }
+
+    a {
+      color: #00ff9c;
+      text-decoration: none;
+    }
+  </style>
 </head>
-<body style="margin:0">
-  <iframe 
-    src="https://chromedino.com/"
-    width="100%" 
-    height="600px"
-    frameborder="0">
-  </iframe>
+
+<body>
+
+  <h1>🦖 Dino Game</h1>
+  <p>Press <b>SPACE</b> or <b>CLICK / TAP</b> to Jump</p>
+
+  <canvas id="game" width="600" height="200"></canvas>
+
+  <div style="display:flex;gap:12px;justify-content:center;align-items:center;margin-top:8px;">
+    <p id="score">Score: 0</p>
+    <button id="restart" class="card">Restart</button>
+    <a href="/">⬅ Back to Home</a>
+  </div>
+
+  <script src="/static/dino.js"></script>
 </body>
 </html>
