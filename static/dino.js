@@ -18,7 +18,7 @@ function initEntities() {
 }
 
 document.addEventListener("keydown", e => {
-  if ((e.code === "Space" || e.code === "ArrowUp") && !dino.jump) {
+  if (e.code === "Space" && !dino.jump) {
     dino.dy = -15;
     dino.jump = true;
   }
