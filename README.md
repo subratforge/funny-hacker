@@ -62,7 +62,7 @@ http://127.0.0.1:5000
 
 
 👤 Author
-Prince
+Subrat Malik
 Class 11 Student | Learning Python, Flask & Web Development
 
 ⭐ Future Plans
